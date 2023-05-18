@@ -4,7 +4,7 @@ import tkinter as tkin
 from PIL import ImageTk, Image
 import random
 import os.path
-
+import pieces
 
 
 

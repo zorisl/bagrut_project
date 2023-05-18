@@ -56,7 +56,33 @@ class UserClient:
 
         # Add registration widgets here
         # ...
+        # Create the username label and entry widget
+        name_label = tk.Label(self.root, text='Username:')
+        name_label.pack()
+        self.name_entry = tk.Entry(self.root, textvariable=self.username)
+        self.name_entry.pack()
 
+        # Create the password label and entry widget
+        password1_label = tk.Label(self.root, text='Password:')
+        password1_label.pack()
+        self.password1_entry = tk.Entry(self.root, show='*', textvariable=self.password)
+        self.password1_entry.pack()
+
+
+        # Create the sign up button
+        signup_button = tk.Button(self.root, text='Sign Up', command=self.on_signup)
+        signup_button.pack()
+
+        def on_signup():
+            # Create the new user object and save it to disk
+            username = name_label.get()
+            password = password1_label.get()
+            new_user1 = User(username, password)
+            with open('users.txt', 'a') as f:
+                f.write(f'{username.username},{username.password}\n')
+            signin_window.grab_release() # Release focus from the new window
+            signin_window.destroy() # Destroy the new window
+            self.root.deiconify() # Show the login window again
 
         def on_close():
             signin_window.grab_release() # Release focus from the new window
@@ -75,5 +101,5 @@ class UserClient:
     def start(self):
         self.root.mainloop()
 
-clclient = UserClient()
-clclient.start()
+client = UserClient()
+client.start()

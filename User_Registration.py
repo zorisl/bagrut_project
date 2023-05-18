@@ -56,11 +56,11 @@ class UserReg:
 
         def on_signup_submit1():
             # Create the new user object and save it to disk
-            username1 = username_entry1.get()
-            password1 = password_entry1.get()
-            new_user1 = User(username1, password1)
+            username = username_entry1.get()
+            password = password_entry1.get()
+            new_user1 = User(username, password)
             with open('users.txt', 'a') as f:
-                f.write(f'{new_user1.username1},{new_user1.password}\n')
+                f.write(f'{new_user1.username},{new_user1.password}\n')
 
             # Close the user registry window
             registry_window1.destroy()
