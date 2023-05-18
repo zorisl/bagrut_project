@@ -1,9 +1,7 @@
-
 import sqlite3
 
-
 class Player(object):
-    def __init__(self, tablename="Players", Id="Id", password="password", username="username", NumOfWins = "Number of wins"):
+    def __init__(self, tablename="Players", Id="Id", password="password", username="username", NumOfWins = "Number_of_wins"):
         self.__tablename = tablename
         self.__Id = Id
         self.__password = password
@@ -39,15 +37,16 @@ class Player(object):
     def return_player_by_username_and_password(self, username, password):
         conn = sqlite3.connect('test.db')
         print("Opened database successfully")
-        strsql = "SELECT * from " + self.__tablename + " where " + self.__username + "=" + "'" + str(username) + "' & '" + self.__password + "' = " + "'" + str(password) + "'"
+        strsql = "SELECT * from " + self.__tablename + " where " + self.__username + " = '" + str(username) + "' & " + self.__password + " = '" + str(password) + "'"
         print(strsql)
         cursor = conn.execute(strsql)
         row = cursor.fetchone()
         if row:
             print("player exists")
+            c = print("success")
             conn.commit()
             conn.close()
-            return [row[1], row[2], row[3]]
+            return [row[1], row[2], row[3] + c]
 
 
         else:

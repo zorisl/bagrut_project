@@ -1,22 +1,22 @@
 # chess game
 
-import tkinter as tkin
+import tkinter as tk
 from PIL import ImageTk, Image
 import random
 import os.path
-import pieces
 
 
 
 
-root = tkin.Tk()
-root.title("Louise's 2D Chess")
+
+root = tk.Tk()
+root.title("Chess")
 root.geometry("1300x1000")
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # title
-header = tkin.Label(root, text="2D Chess", )
+header = tk.Label(root, text="Chess    ", )
 header.config(font=("courier", 20))
 header.grid(column=0, row=0)
 
@@ -24,8 +24,8 @@ header.grid(column=0, row=0)
 def roundLabel():
     global moveNo
 
-    roundText = tkin.Label(root, text="MOVE")
-    roundNo = tkin.Label(root, text=moveNo)
+    roundText = tk.Label(root, text="MOVE")
+    roundNo = tk.Label(root, text=moveNo)
     roundText.grid(column=0, row=9, sticky="w")
     roundNo = roundNo.grid(column=0, row=9)
 
@@ -42,7 +42,7 @@ def labelTop():
     topLabels = ["A", "B", "C", "D", "E", "F", "G", "H"]
     count = 1
     for letter in topLabels:
-        letter = tkin.Label(root, text=letter)
+        letter = tk.Label(root, text=letter)
         letter.grid(column=count, row=0, sticky="S")
         count += 1
 
@@ -53,13 +53,13 @@ def labelSide():
     sideLabels += range(8, 0, -1)
     count = 1
     for num in sideLabels:
-        num = tkin.Label(root, text=num)
+        num = tk.Label(root, text=num)
         num.grid(column=0, row=count, sticky="E")
         count += 1
 
 
 def padding():
-    lLabel = tkin.Label(root)
+    lLabel = tk.Label(root)
     lLabel.grid(column=0, ipadx=50)
 
 
@@ -92,12 +92,12 @@ def makeBoardCanvases():
     # this preserves transparency and makes it easier
     for var in blackSquares:
         ind = blackSquares.index(var)
-        blackSquares[ind] = tkin.Canvas(root, width=110, height=110, border=0, bg="brown", cursor="hand2")
+        blackSquares[ind] = tk.Canvas(root, width=110, height=110, border=0, bg="brown", cursor="hand2")
         # blackSquares[ind].create_image(50,50,image=)
 
     for var in whiteSquares:
         ind = whiteSquares.index(var)
-        whiteSquares[ind] = tkin.Canvas(root, width=110, height=110, border=0, bg="white", cursor="hand2")
+        whiteSquares[ind] = tk.Canvas(root, width=110, height=110, border=0, bg="white", cursor="hand2")
         # whiteSquares[ind].create_image(50,50,image=)
 
     return blackSquares, whiteSquares
@@ -285,9 +285,9 @@ class Piece(object):
 
 class Pawn(Piece):
     # properties
-    bOpen = Image.open(os.path.join(script_dir, "mats/bPawn.png"))
+    bOpen = Image.open(os.path.join(script_dir, "piece/bPawn.png"))
     bImage = ImageTk.PhotoImage(bOpen)
-    wOpen = Image.open(os.path.join(script_dir, "mats/wPawn.png"))
+    wOpen = Image.open(os.path.join(script_dir, "piece/wPawn.png"))
     wImage = ImageTk.PhotoImage(wOpen)
 
     kind = "pawn"
@@ -436,9 +436,9 @@ class Pawn(Piece):
 
 class Knight(Piece):
     # properties
-    bOpen = Image.open(os.path.join(script_dir, "mats/bKnight.png"))
+    bOpen = Image.open(os.path.join(script_dir, "piece/bKnight.png"))
     bImage = ImageTk.PhotoImage(bOpen)
-    wOpen = Image.open(os.path.join(script_dir, "mats/wKnight.png"))
+    wOpen = Image.open(os.path.join(script_dir, "piece/wKnight.png"))
     wImage = ImageTk.PhotoImage(wOpen)
 
     kind = "knight"
@@ -615,9 +615,9 @@ class Knight(Piece):
 
 class Rook(Piece):
     # properties
-    bOpen = Image.open(os.path.join(script_dir, "mats/bRook.png"))
+    bOpen = Image.open(os.path.join(script_dir, "piece/bRook.png"))
     bImage = ImageTk.PhotoImage(bOpen)
-    wOpen = Image.open(os.path.join(script_dir, "mats/wRook.png"))
+    wOpen = Image.open(os.path.join(script_dir, "piece/wRook.png"))
     wImage = ImageTk.PhotoImage(wOpen)
 
     kind = "rook"
@@ -849,9 +849,9 @@ class Rook(Piece):
 
 class Bishop(Piece):
     # properties
-    bOpen = Image.open(os.path.join(script_dir, "mats/bBishop.png"))
+    bOpen = Image.open(os.path.join(script_dir, "piece/bBishop.png"))
     bImage = ImageTk.PhotoImage(bOpen)
-    wOpen = Image.open(os.path.join(script_dir, "mats/wBishop.png"))
+    wOpen = Image.open(os.path.join(script_dir, "piece/wBishop.png"))
     wImage = ImageTk.PhotoImage(wOpen)
 
     kind = "bishop"
@@ -1110,9 +1110,9 @@ class Bishop(Piece):
 
 class Queen(Piece):
     # properties
-    bOpen = Image.open(os.path.join(script_dir, "mats/bQueen.png"))
+    bOpen = Image.open(os.path.join(script_dir, "piece/bQueen.png"))
     bImage = ImageTk.PhotoImage(bOpen)
-    wOpen = Image.open(os.path.join(script_dir, "mats/wQueen.png"))
+    wOpen = Image.open(os.path.join(script_dir, "piece/wQueen.png"))
     wImage = ImageTk.PhotoImage(wOpen)
 
     kind = "queen"
@@ -1595,9 +1595,9 @@ class Queen(Piece):
 
 class King(Piece):
     # properties
-    bOpen = Image.open(os.path.join(script_dir, "mats/bKing.png"))
+    bOpen = Image.open(os.path.join(script_dir, "piece/bKing.png"))
     bImage = ImageTk.PhotoImage(bOpen)
-    wOpen = Image.open(os.path.join(script_dir, "mats/wKing.png"))
+    wOpen = Image.open(os.path.join(script_dir, "piece/wKing.png"))
     wImage = ImageTk.PhotoImage(wOpen)
 
     kind = "king"
@@ -1961,8 +1961,8 @@ def doMove(event, origSquare, possibleMoves):
     global moveNo
     moveNo += 1
 
-    roundText = tkin.Label(root, text="MOVE")
-    roundNo = tkin.Label(root, text=moveNo)
+    roundText = tk.Label(root, text="MOVE")
+    roundNo = tk.Label(root, text=moveNo)
     roundText.grid(column=0, row=9, sticky="w")
     roundNo = roundNo.grid(column=0, row=9)
 
@@ -2019,7 +2019,7 @@ def pickPiece(setMove, places, origSquare):
         playerGo = "It's black's move."
 
     # display label of who's turn it is
-    playerText = tkin.Label(root, text=playerGo)
+    playerText = tk.Label(root, text=playerGo)
     playerText.grid(column=10, row=0)
 
     # do this time
@@ -2137,12 +2137,12 @@ def playerMove(event, active, board, boardObjectSpaces):
 def winLose(otherPiece):
     # if king dies
 
-    popup = tkin.Tk()
+    popup = tk.Tk()
     popup.geometry("1000x800")
 
     popup.wm_title("You WIN!!!")
 
-    label = tkin.Label(popup, font=("Helvetica", 100))
+    label = tk.Label(popup, font=("Helvetica", 100))
 
     if otherPiece.color == "b":
         # white wins
