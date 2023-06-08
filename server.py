@@ -55,7 +55,7 @@ class Server(object):
                        print("register user")
                        print(arr)
                        server_data=self.userDb.insert_user(arr[1], arr[2])
-                       print("sertver data:",server_data)
+                       print("server data:", server_data)
                        if server_data:
                            client_socket.send("success register".encode())
                        elif server_data:
